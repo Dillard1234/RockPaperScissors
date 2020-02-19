@@ -4,39 +4,43 @@
 <body>
   <script>
       let Choices = ["rock","paper", "scissors"]
+      let computerSelection = computerPlay();
+      let playerSelection = playerPlay(); 
+        
+         function computerPlay(){
+          var compChoices = Choices
+          return compChoices[Math.floor(Math.random()*compChoices.length)];
+        }
 
-      const computerSelection = function computerPlay(){
-        var compChoices = Choices
-        return compChoices[Math.floor(Math.random()*compChoices.length)];
-      }
+         function playerPlay(){
+            let playerPick = window.prompt("choose either rock, paper, or scissors:").toLowerCase();
 
-      const playerSelection = function playerPlay(){
-          let playerPick = window.prompt("choose either rock, paper, or scissors:").toLowerCase();
-
-          if (Choices.indexOf(playerPick) !== -1){
-            return playerPick;
-          } else{
-            alert("invalid choice - try again");
-            return playerPlay();
-          }
-          
-      }
-
-        var x = choices.indexOf(computerSelection),
-            y = choices.indexOf(playerSelection);
-            if (x === y) {
-                return("The result is a tie!");
-            } else if (x > y) {
-                if (x == 3 && y == 0) {
-                    return playerSelection + " wins";
-                } else {
-                    return computerSelection + " wins";
-                }
-            } else {
-                return playerSelection + " wins";
+            if (Choices.indexOf(playerPick) !== -1){
+              return playerPick;
+            } else{
+              alert("invalid choice - try again");
+              return playerPlay();
             }
+            
+        }
 
-
+        function playRPS(computerSelection,playerSelection){
+              let x = Choices.indexOf(computerSelection);
+              let y = Choices.indexOf(playerSelection);
+              if (x === y) {
+                  return("The result is a tie!");
+              } else if (x > y) {
+                  if (x == 2 && y == 0) {
+                      return "the player selected:" + playerSelection + " and wins";
+                  } else {
+                      return "the computer selected:" + computerSelection + " and wins";
+                  }
+              } else {
+                  return "the player selected:" + playerSelection + " and wins";
+              }
+            }
+        
+      console.log(playRPS(computerSelection,playerSelection));
 
 
   </script>
