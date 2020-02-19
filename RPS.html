@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <script>
+      let Choices = ["rock","paper", "scissors"]
+
+      const computerSelection = function computerPlay(){
+        var compChoices = Choices
+        return compChoices[Math.floor(Math.random()*compChoices.length)];
+      }
+
+      const playerSelection = function playerPlay(){
+          let playerPick = window.prompt("choose either rock, paper, or scissors:").toLowerCase();
+
+          if (Choices.indexOf(playerPick) !== -1){
+            return playerPick;
+          } else{
+            alert("invalid choice - try again");
+            return playerPlay();
+          }
+          
+      }
+
+        var x = choices.indexOf(computerSelection),
+            y = choices.indexOf(playerSelection);
+            if (x === y) {
+                return("The result is a tie!");
+            } else if (x > y) {
+                if (x == 3 && y == 0) {
+                    return playerSelection + " wins";
+                } else {
+                    return computerSelection + " wins";
+                }
+            } else {
+                return playerSelection + " wins";
+            }
+
+
+
+
+  </script>
+
+
+</body>
+
+</html>
