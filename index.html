@@ -1,1 +1,105 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+</head>
+<body>
+
+  <script>
+        let Choices = ["rock","paper", "scissors"]
+        let computerSelection;
+        let playerSelection; 
+        let scorePlayer = 0;
+        let scoreComputer = 0;
+        let x;
+        let y;
+
+
+    function computerPlay(){
+            var compChoices = Choices
+            return compChoices[Math.floor(Math.random()*compChoices.length)];
+    }
+
+    function playerPlay(){
+            let playerPick = window.prompt("choose either rock, paper, or scissors:").toLowerCase();
+
+            if (Choices.indexOf(playerPick) !== -1){
+              return playerPick;
+            } else{
+              alert("invalid choice - try again");
+              return playerPlay();
+            }
+    }
+
+    function increment(){
+
+        let x1 = x;
+        let y1 = y;
+        if (x === y) {
+      } else if (x1 > y1) {
+                if (x1 == 2 && y1 == 0) {
+                    return scorePlayer++
+                } else {
+                    return scoreComputer++ 
+                }
+                } else {
+                return scorePlayer++
+
+        }
+
+    }
+
+    function playRPS(computerSelection,playerSelection){
+        computerSelection = computerPlay();
+        playerSelection = playerPlay(); 
+        x = Choices.indexOf(computerSelection);
+        y = Choices.indexOf(playerSelection);
+
+      if (x === y) {
+          return("The result is a tie!");
+      } else if (x > y) {
+          if (x == 2 && y == 0) {
+            return "the player selected: " + playerSelection + " and wins, the computer selected: " + computerSelection;   
+          } else {
+            return "the computer selected: " + computerSelection + " and wins, the player selected: " + playerSelection;  
+          }
+      } else {
+        return "the player selected: " + playerSelection + " and wins, the computer selected: " + computerSelection;  
+      }
+
+      increment();
+
+    }
+
+
+function fivePlays(){
+alert(playRPS(computerSelection,playerSelection));
+increment();
+alert(playRPS(computerSelection,playerSelection));
+increment();
+alert(playRPS(computerSelection,playerSelection));
+increment();
+alert(playRPS(computerSelection,playerSelection));
+increment();
+alert(playRPS(computerSelection,playerSelection));
+increment();
+
+alert("The Score is: Player - " + scorePlayer + " Computer - " + scoreComputer);
+
+if (scorePlayer > scoreComputer){
+    alert("The Player wins!");
+} else if (scoreComputer > scorePlayer){
+    alert("The Computer wins!");
+} else {
+    alert("There was a tie!"); 
+}
+
+}
+
+fivePlays();
+
+
+  </script>
+</body>
+</html>
