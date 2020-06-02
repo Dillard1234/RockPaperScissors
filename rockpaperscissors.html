@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock, Paper, scissors</title>
+  <link rel="stylesheet" type="text/css" href="RPSstyle.css">
+</head>
+<body>
+
+<div id = "gameInfo">
+<h1>Choose from Either Rock, Paper, or Scissors...</h1>
+  <p id = "player"></p>
+  <p id = "computer"></p>
+  <p id = "winner"></p>  
+  <p id = "roundScores"></p>
+  <p id = "gameWinner"></p>
+  <button id="Rock"><img src="rock.png" /></button>
+  <button id="Paper">Paper</button>
+  <button id="Scissors">Scissors</button> 
+</div>
+
+<div id = "resetGameDiv" style = "display : none"> 
+    <h1>Would you like to play Again?</h1>
+    <button id = "resetGameButton" onClick="window.location.reload();">RESET</button>
+</div>    
+
+
+</body>
+
+<script>
+
+  let Choices = ["Rock","Paper", "Scissors"]
+  let computerSelection,playerSelection
+  let scorePlayer = 0;
+  let scoreComputer = 0;
+
+
+function computerPlay(){
+      var compChoices = Choices
+      return compChoices[Math.floor(Math.random()*compChoices.length)];
+}
+
+
+
+function playRPS(computerSelection,playerSelection){
+x = Choices.indexOf(computerSelection);
+y = Choices.indexOf(playerSelection);
+if (x === y) {
+  document.getElementById('winner').textContent = "The result is a tie!";
+}
+else if (x == 0 && y == 2 || x == 2 & y == 1 || x == 1 & y == 0){
+  document.getElementById('winner').textContent = "The computer selected: " + computerSelection + " and wins the round, the player selected: " + playerSelection;
+  return ++scoreComputer;
+}
+else{
+  document.getElementById('winner').textContent = "The player selected: " + playerSelection + " and wins the round, the computer selected: " + computerSelection;  
+  return ++scorePlayer; 
+}
+
+}
+
+function newGame() {
+  var gameInfo = document.querySelector(gameInfo);
+  resetGameDiv.style.display = "block";
+}
+
+function gameEnd() {
+
+  if (scorePlayer === 5 ){
+    gameInfo.style.display = "none";
+    var gameWinner = document.createElement('h1');
+    gameWinner.textContent = 'The Player Wins the Game!';
+    resetGameDiv.prepend(gameWinner);
+    scorePlayer = 0;
+    scoreComputer = 0;
+    newGame();
+  } else if (scoreComputer === 5){
+    gameInfo.style.display = "none";
+    var gameWinner = document.createElement('h1');
+    gameWinner.textContent = 'The Computer Wins the Game!';
+    resetGameDiv.prepend(gameWinner);
+    scorePlayer = 0;
+    scoreComputer = 0;
+    newGame();
+  }
+
+}
+
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach((button) => {
+
+  button.addEventListener('click', (e) => {
+
+    
+    playerSelection = button.id;
+    document.getElementById('player').textContent = "Player Chooses: " + playerSelection;
+    computerSelection = computerPlay();
+    document.getElementById('computer').textContent = "Computer Chooses: " + computerSelection;
+    playRPS(computerSelection,playerSelection);
+    document.getElementById('roundScores').textContent = "Player Score: " + scorePlayer + " Computer Score: " + scoreComputer;
+    gameEnd();
+
+  });
+
+});
+
+
+
+
+
+</script>
+</html>
